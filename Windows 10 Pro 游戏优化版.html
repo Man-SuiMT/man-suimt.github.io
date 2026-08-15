@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 10 Pro 游戏优化版 - 发布说明</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --card-bg: #161b22;
+            --border: #30363d;
+            --text: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent2: #3fb950;
+            --danger: #f85149;
+            --warning: #d2991d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.3rem;
+        }
+
+        .badge.green {
+            background: var(--accent2);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: #f0f6fc;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .card h2 .icon {
+            font-size: 1.6rem;
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-item {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .stat-item .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-item .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent2);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: #1b2b1f;
+            border-left: 4px solid var(--accent2);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            color: #d2f0d8;
+        }
+
+        .highlight-box.warning {
+            background: #2b1f1b;
+            border-left-color: var(--warning);
+            color: #f0d8d2;
+        }
+
+        .highlight-box strong {
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--bg);
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .feature-item {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+
+        .feature-item .emoji {
+            font-size: 1.8rem;
+        }
+
+        .feature-item h4 {
+            margin-bottom: 0.3rem;
+            color: #f0f6fc;
+        }
+
+        .feature-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Windows 10 Pro 游戏优化版</h1>
+            <p class="subtitle">基于 x64 专业版 · 深度精简 · 极致性能 · 隐私加固</p>
+            <div style="margin-top:1rem;">
+                <span class="badge">版本 1904x</span>
+                <span class="badge green">封装日期 2026-07</span>
+                <span class="badge">Sysprep 通用化</span>
+            </div>
+        </header>
+
+        <!-- 统计卡片 -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="number">70+</div>
+                <div class="label">项性能优化</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">13</div>
+                <div class="label">个服务禁用</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">0</div>
+                <div class="label">后台干扰</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">✓</div>
+                <div class="label">微软账户可用</div>
+            </div>
+        </div>
+
+        <!-- 主要特性 -->
+        <div class="card">
+            <h2><span class="icon">⚡</span> 核心特性</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="emoji">🖥️</div>
+                    <div>
+                        <h4>极限视觉性能</h4>
+                        <p>关闭所有动画、阴影、半透明，调整为最佳性能，降低渲染延迟。</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">🌐</div>
+                    <div>
+                        <h4>低延迟网络</h4>
+                        <p>禁用 Nagle 算法、网络节流，优化 DNS 缓存，加速游戏响应。</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">🎯</div>
+                    <div>
+                        <h4>精准输入</h4>
+                        <p>关闭鼠标加速，缩减数据队列，键盘响应最大化，原始输入直达游戏。</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">🔒</div>
+                    <div>
+                        <h4>隐私零泄露</h4>
+                        <p>遥测级别0，活动历史关闭，广告ID禁用，开始菜单建议全部屏蔽。</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">🧹</div>
+                    <div>
+                        <h4>组件深度精简</h4>
+                        <p>移除 Defender、Cortana、平板组件、多余应用，系统轻盈如飞。</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">🔐</div>
+                    <div>
+                        <h4>安全可控</h4>
+                        <p>防火墙/安全中心/更新均彻底关闭且策略锁定，用户拥有完全控制权。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 详细优化分类 -->
+        <div class="card">
+            <h2><span class="icon">📋</span> 详细优化项目 (70+)</h2>
+            
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">🖼️ 视觉效果与桌面</h3>
+            <ul>
+                <li>调整为最佳性能（关闭所有动画、阴影、半透明）</li>
+                <li>任务栏动画关闭</li>
+                <li>拖动窗口时隐藏内容</li>
+                <li>平滑屏幕字体边缘关闭</li>
+                <li>启动时不恢复文件夹窗口</li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">🌐 网络延迟降低</h3>
+            <ul>
+                <li>Nagle 算法禁用（所有网卡）</li>
+                <li>网络节流关闭</li>
+                <li>TCP 自动调谐 Normal</li>
+                <li>DNS 缓存优化（正向86400秒，负向0）</li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">⚙️ CPU / GPU 调度</h3>
+            <ul>
+                <li>GPU 优先级 8，调度类别 High</li>
+                <li>核心停车禁用（CPMINCORES=100）</li>
+                <li>处理器闲置状态禁用（仅台式）</li>
+                <li>性能提升策略激进（PERFINCPOL=2）</li>
+                <li>性能阈值锁定（不降频）</li>
+                <li>处理器计划 → 程序（前台优先）</li>
+                <li>处理器性能增强模式高性能</li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">🔋 电源计划补充</h3>
+            <ul>
+                <li>PCIe ASPM 关闭</li>
+                <li>WiFi 强制最大性能</li>
+                <li>USB 选择性暂停禁用</li>
+                <li>硬盘空闲关闭禁用</li>
+                <li>CPU 最小频率 100%（台式）</li>
+                <li>电源方案：卓越性能</li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">🖱️ 输入延迟</h3>
+            <ul>
+                <li>鼠标数据队列缩减至 20</li>
+                <li>键盘延迟 0，速度 31</li>
+                <li><strong>彻底关闭鼠标加速</strong></li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">🎥 显示与渲染</h3>
+            <ul>
+                <li>全屏优化禁用（独占全屏模式）</li>
+                <li>硬件加速 GPU 调度开启 (HwSchMode=2)</li>
+                <li>MPO 禁用 (OverlayTestMode=5)</li>
+                <li>Game Bar 完全关闭</li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">💾 内存与磁盘</h3>
+            <ul>
+                <li>页面文件固定 4096 MB</li>
+                <li>休眠文件关闭</li>
+                <li>SysMain (Superfetch) 禁用</li>
+                <li>大页内存 (Large Pages) 启用</li>
+                <li>页面合并关闭</li>
+                <li>内存压缩关闭（32 GB+ 自动执行）</li>
+                <li>NTFS 最后访问时间更新禁用</li>
+                <li>8.3 短文件名生成禁用</li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">🔏 隐私与后台</h3>
+            <ul>
+                <li>遥测级别 0（基础数据也不上报）</li>
+                <li>活动历史记录完全关闭</li>
+                <li>后台应用全局禁用</li>
+                <li>广告 ID 关闭</li>
+                <li>开始菜单/锁屏建议全部关闭</li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">🧪 服务精简 (13项禁用)</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>服务名</th><th>说明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>SysMain</td><td>超级预读取</td></tr>
+                        <tr><td>Spooler</td><td>打印后台处理</td></tr>
+                        <tr><td>WerSvc</td><td>Windows 错误报告</td></tr>
+                        <tr><td>DPS / WdiServiceHost / WdiSystemHost</td><td>诊断服务全套</td></tr>
+                        <tr><td>PcaSvc</td><td>程序兼容性助手</td></tr>
+                        <tr><td>TabletInputService</td><td>触控键盘</td></tr>
+                        <tr><td>MapsBroker</td><td>离线地图</td></tr>
+                        <tr><td>wuauserv / UsoSvc</td><td>Windows Update</td></tr>
+                        <tr><td>SecurityHealthService / wscsvc</td><td>安全中心</td></tr>
+                        <tr><td>MpsSvc</td><td>防火墙（策略已关）</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">🚫 更新彻底封堵</h3>
+            <ul>
+                <li>禁止连接所有 Windows Update 服务器</li>
+                <li>禁用更新界面（用户无法手动检查）</li>
+                <li>Delivery Optimization 关闭</li>
+                <li>相关计划任务全部禁用（WindowsUpdate、UpdateOrchestrator、WaaSMedic）</li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">🛡️ 安全与防火墙固化</h3>
+            <ul>
+                <li>安全中心通过组策略禁止启动</li>
+                <li>防火墙三个配置文件均策略禁用</li>
+                <li>兴趣 & 资讯通过策略关闭</li>
+            </ul>
+
+            <h3 style="margin-top:1.5rem; color:#f0f6fc;">🗑️ 组件移除 (NTLite)</h3>
+            <ul>
+                <li>Windows Defender 组件移除</li>
+                <li>Cortana、Edge 更新任务禁用</li>
+                <li>多媒体：音乐、视频、录音机、Media Player</li>
+                <li>平板/手写/语音识别组件</li>
+                <li>打印系统（可选恢复）</li>
+                <li>远程协助、家庭组、脱机文件、Telnet</li>
+                <li>地图、天气、邮件、Skype、Xbox Console Companion 等应用</li>
+                <li>旧式驱动：软盘、1394、调制解调器、红外</li>
+            </ul>
+        </div>
+
+        <!-- 封装加固措施 -->
+        <div class="card">
+            <h2><span class="icon">🔐</span> 封装防重置机制</h2>
+            <div class="highlight-box">
+                <strong>✅ 三层保护，确保优化不丢失</strong>
+                ① 系统级策略与注册表（HKLM）永久驻留<br>
+                ② 部署后脚本 (SetupComplete.cmd) 在 OOBE 前自动重新应用电源、服务、注册表<br>
+                ③ 默认用户模板注入 (Default User)，新用户自动继承所有 HKCU 设置（鼠标、视觉效果等）
+            </div>
+        </div>
+
+        <!-- 注意事项 -->
+        <div class="card">
+            <h2><span class="icon">⚠️</span> 注意事项</h2>
+            <div class="highlight-box warning">
+                <strong>📌 重要提示</strong>
+                <ul style="margin-top:0.5rem;">
+                    <li>系统未激活，需用户自行使用正版密钥或 KMS 激活。</li>
+                    <li>若需打印功能，请将 Spooler 服务设为“自动”并启动。</li>
+                    <li>极少数旧软件若依赖 8.3 短文件名，可执行 <code>fsutil behavior set disable8dot3 0</code> 恢复。</li>
+                    <li>笔记本用户：脚本已自动跳过处理器闲置状态禁用和 CPU 最小频率锁定，保证续航。</li>
+                    <li>安全中心已彻底禁用，如有安全需求请安装第三方杀毒软件。</li>
+                    <li>微软账户登录、同步、Xbox Live 均正常可用。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 文件信息 -->
+        <div class="card">
+            <h2><span class="icon">📦</span> 映像信息</h2>
+            <table>
+                <tr><td><strong>映像格式</strong></td><td>install.wim（ESD 压缩）</td></tr>
+                <tr><td><strong>系统版本</strong></td><td>Windows 10 Pro x64 (1904x)</td></tr>
+                <tr><td><strong>封装方式</strong></td><td>Sysprep 通用化，部署后自动优化</td></tr>
+                <tr><td><strong>文件大小</strong></td><td>约 4 - 6 GB</td></tr>
+                <tr><td><strong>推荐部署工具</strong></td><td>Dism++、WinNTSetup、DISM 命令行</td></tr>
+            </table>
+        </div>
+
+        <footer>
+            <p>🎮 Windows 10 Pro 游戏优化版 · 纯净 · 高性能 · 无干扰</p>
+            <p style="margin-top:0.5rem;">封装日期：2026年7月 | 仅供学习与交流，请支持正版软件。</p>
+        </footer>
+    </div>
+</body>
+</html>
